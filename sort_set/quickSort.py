@@ -6,7 +6,7 @@ import random
 
 def quick_sort(array, left, right):
     if left >= right:
-        return array
+        return
     flag = array[left]
     small = left
     big = right
