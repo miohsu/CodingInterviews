@@ -52,4 +52,7 @@ if __name__ == '__main__':
     mq.appendTail(2)
     mq.appendTail(3)
     mq.deleteHead()
+    mq.appendTail(4)
+    mq.deleteHead()
+    mq.deleteHead()
     mq.deleteHead()
