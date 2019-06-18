@@ -1,46 +1,38 @@
 """
     归并排序
 """
+from sort_set.create_data import create_data
 
 
-def merge(lst, l, r, mid):
-    data = lst.copy()
-    i, j = l, mid
-    k = l
-    while i < mid and j < r:
-        if data[i] < data[j]:
-            lst[k] = data[i]
+def merge(left, right):
+    i, j = 0, 0
+    l_len = len(left)
+    r_len = len(right)
+    result = []
+    while i < l_len and j < r_len:
+        if left[i] < right[j]:
+            result.append(left[i])
             i += 1
         else:
-            lst[k] = data[j]
+            result.append(right[j])
             j += 1
-        k += 1
-    while i < mid:
-        lst[k] = data[i]
-        i += 1
-        k += 1
-    while j < r:
-        lst[k] = data[j]
-        j += 1
-        k += 1
+    if i < l_len:
+        result.extend(left[i:])
+    elif j < r_len:
+        result.extend(right[j:])
+    return result
 
 
-def merge_sort_core(lst, l, r):
-    if r - l <= 1:
-        return
-    mid = (r - l) // 2 + l
-    merge_sort_core(lst, l, mid)
-    merge_sort_core(lst, mid, r)
-    merge(lst, l, r, mid)
-
-
-def merge_sort(lst):
-    l, r = 0, len(lst)
-    merge_sort_core(lst, l, r)
+def merge_sort(array):
+    if len(array) < 2:
+        return array
+    mid = len(array) // 2
+    left = merge_sort(array[:mid])
+    right = merge_sort(array[mid:])
+    return merge(left, right)
 
 
 if __name__ == '__main__':
-    nums = [1, 43, 3, 532, 654, 9, 45]
-    print(nums)
-    merge_sort(nums)
-    print(nums)
+    data = create_data(10)
+    print(data)
+    print(merge_sort(data))
