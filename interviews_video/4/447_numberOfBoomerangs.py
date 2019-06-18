@@ -40,7 +40,7 @@ class Solution:
                     d[distance] += 1
                 l += 1
             for point_list in d.values():
-                result += point_list*(point_list-1)
+                result += point_list * (point_list - 1)
         return result
 
 
